@@ -1,5 +1,6 @@
 services:
   user-service:
+    image: polyglot/user-service:latest
     build: ./workspace/services/user-service
     ports:
       - "5000:5000"
@@ -9,6 +10,7 @@ services:
       - microservices-net
 
   order-service:
+    image: polyglot/order-service:latest
     build: ./workspace/services/order-service
     ports:
       - "3000:3000"
@@ -23,6 +25,7 @@ services:
       - microservices-net
 
   inventory-service:
+    image: polyglot/inventory-service:latest
     build: ./workspace/services/inventory-service
     ports:
       - "4000:4000"

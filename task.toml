@@ -5,7 +5,18 @@ author_name = "anonymous"
 author_email = "anonymous"
 difficulty = "unknown"
 category = "software-engineering"
-tags = [ "file-operations",]
+tags = [
+    "documentation",
+    "markdown",
+    "microservices",
+    "docker",
+    "api",
+    "python",
+    "nodejs",
+    "golang",
+    "devops",
+    "readme"
+]
 expert_time_estimate_min = 60
 junior_time_estimate_min = 120
 
