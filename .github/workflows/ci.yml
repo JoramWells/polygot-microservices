@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: '3.10'
       - run: |
-          cd ../services/user-service
+          cd environment/workspace/services/user-service
           pip install -r requirements.txt
           pytest test-outputs.py -v
 
@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '18'
       - run: |
-          cd ../services/order-service
+          cd environment/workspace/services/order-service
           npm install
           npm test -- --forceExit
 
@@ -39,5 +39,5 @@ jobs:
         with:
           go-version: '1.18'
       - run: |
-          cd ../services/inventory-service
+          cd environment/workspace/services/inventory-service
           go test -v
