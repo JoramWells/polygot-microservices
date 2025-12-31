@@ -1,35 +1,7 @@
-#!/bin/bash
-set -e
-set -x
-
-cd ../environment/workspace
-
-echo "Step 1: Analyzing repository structure..."
-tree -L 2
-
-echo "Step 2: Examining service files to understand endpoints..."
-# Examine Python service
-cat services/user-service/app.py | grep -E "@app.route|def " | head -20
-
-# Examine Node service
-cat services/order-service/index.js | grep -E "app\.(get|post)|function" | head -20
-
-# Examine Go service
-cat services/inventory-service/main.go | grep -E "HandleFunc|func " | head -20
-
-echo "Step 3: Checking docker-compose configuration..."
-cat ../docker-compose.yml | grep -E "ports:|environment:" -A 1
-
-echo "Step 4: Examining CI/CD workflow..."
-cat ../../.github/workflows/ci.yml
-
-echo "Step 5: Creating comprehensive README.md..."
-
-cat > README.md << 'EOF'
 # Polyglot Microservices Platform
 
-![CI](https://github.com/company/microservices/workflows/CI/badge.svg)
-![Coverage](https://codecov.io/gh/company/microservices/branch/main/graph/badge.svg)
+![CI](https://github.com/JoramWells/polygot-microservices/workflows/CI/badge.svg)
+![Coverage](https://codecov.io/gh/JoramWells/polygot-microservices/branch/main/graph/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 A modern microservices architecture demonstrating polyglot development with services written in Python, Node.js, and Go. This platform showcases inter-service communication, containerization, and automated CI/CD pipelines.
@@ -54,7 +26,7 @@ The services communicate via REST APIs and are orchestrated using Docker Compose
 |---------|-----------|------|-------------|
 | User Service | Python 3.10 + Flask | 5000 | User account management and authentication |
 | Order Service | Node.js 18 + Express | 3000 | Order processing and workflow orchestration |
-| Inventory Service | Go 1.18 | 4000 | Product inventory tracking |
+| Inventory Service | Go 1.18 | 8080 | Product inventory tracking |
 
 ## Prerequisites
 
@@ -73,7 +45,7 @@ For local development without Docker:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/company/microservices.git
+git clone https://github.com/JoramWells/polygot-microservices.git
 cd microservices
 ```
 
@@ -93,7 +65,7 @@ curl http://localhost:5000/health
 curl http://localhost:3000/health
 
 # Inventory Service
-curl http://localhost:4000/health
+curl http://localhost:8080/health
 ```
 
 Expected response from each service:
@@ -158,7 +130,7 @@ npm test
 |----------|-------------|---------|
 | `PORT` | Port number for the service | 3000 |
 | `USER_SERVICE_URL` | URL of the User Service | http://user-service:5000 |
-| `INVENTORY_SERVICE_URL` | URL of the Inventory Service | http://inventory-service:4000 |
+| `INVENTORY_SERVICE_URL` | URL of the Inventory Service | http://inventory-service:8080 |
 
 ### Inventory Service (Go)
 
@@ -185,7 +157,7 @@ go test -v
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `PORT` | Port number for the service | 4000 |
+| `PORT` | Port number for the service | 8080 |
 
 ## API Documentation
 
@@ -261,7 +233,7 @@ Response:
 
 ### Inventory Service API
 
-**Base URL**: `http://localhost:4000`
+**Base URL**: `http://localhost:8080`
 
 #### Endpoints
 
@@ -273,7 +245,7 @@ Response:
 
 #### Example: Get Product
 ```bash
-curl http://localhost:4000/api/v1/inventory/prod-1
+curl http://localhost:8080/api/v1/inventory/prod-1
 ```
 
 Response:
@@ -452,13 +424,3 @@ Closes #123
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-EOF
-
-echo "Step 6: Verifying README.md was created..."
-ls -lh README.md
-wc -l README.md
-
-echo "Step 7: Validating README structure..."
-grep -E "^# |^## |^### " README.md | head -20
-
-echo "Solution complete! README.md created successfully."

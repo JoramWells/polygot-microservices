@@ -1,6 +1,6 @@
 services:
   user-service:
-    build: ./services/user-service
+    build: ./workspace/services/user-service
     ports:
       - "5000:5000"
     environment:
@@ -9,7 +9,7 @@ services:
       - microservices-net
 
   order-service:
-    build: ./services/order-service
+    build: ./workspace/services/order-service
     ports:
       - "3000:3000"
     environment:
@@ -23,7 +23,7 @@ services:
       - microservices-net
 
   inventory-service:
-    build: ./services/inventory-service
+    build: ./workspace/services/inventory-service
     ports:
       - "4000:4000"
     environment:
