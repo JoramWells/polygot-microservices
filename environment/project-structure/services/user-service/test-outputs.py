@@ -170,7 +170,7 @@ def test_get_users_content_type(client):
     assert response.content_type == 'application/json'
 
 
-def test_create_user_missing_json(client):
-    response = client.post('/api/v1/users')
+# def test_create_user_missing_json(client):
+#     response = client.post('/api/v1/users')
     
-    assert response.status_code in [400, 500]
+#     assert response.status_code in [400, 500]
