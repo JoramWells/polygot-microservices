@@ -1,35 +1,12 @@
 #!/bin/bash
 set -e
-set -x
 
-cd ../environment/workspace
-
-echo "Step 1: Analyzing repository structure..."
-tree -L 2
-
-echo "Step 2: Examining service files to understand endpoints..."
-# Examine Python service
-cat services/user-service/app.py | grep -E "@app.route|def " | head -20
-
-# Examine Node service
-cat services/order-service/index.js | grep -E "app\.(get|post)|function" | head -20
-
-# Examine Go service
-cat services/inventory-service/main.go | grep -E "HandleFunc|func " | head -20
-
-echo "Step 3: Checking docker-compose configuration..."
-cat ../docker-compose.yml | grep -E "ports:|environment:" -A 1
-
-echo "Step 4: Examining CI/CD workflow..."
-cat ../../.github/workflows/ci.yml
-
-echo "Step 5: Creating comprehensive README.md..."
 
 cat > README.md << 'EOF'
 # Polyglot Microservices Platform
 
-![CI](https://github.com/company/microservices/workflows/CI/badge.svg)
-![Coverage](https://codecov.io/gh/company/microservices/branch/main/graph/badge.svg)
+![CI](https://github.com/JoramWells/polygot-microservices/workflows/CI/badge.svg)
+![Coverage](https://codecov.io/gh/JoramWells/polygot-microservices/branch/main/graph/badge.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 A modern microservices architecture demonstrating polyglot development with services written in Python, Node.js, and Go. This platform showcases inter-service communication, containerization, and automated CI/CD pipelines.
@@ -46,7 +23,7 @@ The services communicate via REST APIs and are orchestrated using Docker Compose
 
 ## Architecture Diagram
 
-![Architecture](./architecture.png)
+![Architecture](../environment/workspace/architecture.png)
 
 ## Services Overview
 
@@ -73,7 +50,7 @@ For local development without Docker:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/company/microservices.git
+git clone https://github.com/JoramWells/polygot-microservices
 cd microservices
 ```
 
@@ -454,11 +431,5 @@ Closes #123
 This project is licensed under the MIT License. See the LICENSE file for details.
 EOF
 
-echo "Step 6: Verifying README.md was created..."
-ls -lh README.md
-wc -l README.md
-
-echo "Step 7: Validating README structure..."
-grep -E "^# |^## |^### " README.md | head -20
-
-echo "Solution complete! README.md created successfully."
+echo "README.md created successfully"
+ls -lh /workspace/README.md
