@@ -17,7 +17,7 @@ jobs:
       - run: |
           cd environment/project-structure/services/user-service
           pip install -r requirements.txt
-          pytest
+          pytest test-outputs.py -v
 
   test-order-service:
     runs-on: ubuntu-latest
