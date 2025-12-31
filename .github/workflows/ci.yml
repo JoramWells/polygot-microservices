@@ -29,7 +29,7 @@ jobs:
       - run: |
           cd environment/project-structure/services/order-service
           npm install
-          npm test
+          npm test -- --forceExit
 
   test-inventory-service:
     runs-on: ubuntu-latest
